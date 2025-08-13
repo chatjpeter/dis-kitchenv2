@@ -358,6 +358,71 @@ section {
   color: red;
   
 }
+
+
+.contact-section {
+  min-height: 100vh;
+  padding: 90px 10px;
+  text-align: center;
+  color: white;
+}
+
+.contact-title {
+  font-size: 3.5rem;
+  text-shadow: 0 0 10px aqua;
+  margin-bottom: 10px;
+}
+
+.contact-intro {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+}
+
+.contact-info p {
+  font-size: 1.4rem;
+  margin: 8px 0;
+}
+
+.contact-info a {
+  color: aqua;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.contact-info a:hover {
+  text-shadow: 0 0 10px aqua;
+}
+
+.contact-social {
+  margin-top: 20px;
+}
+
+.social-link {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 2px solid aqua;
+  font-size: 1.4rem;
+  color: aqua;
+  transition: 0.3s ease;
+}
+
+.social-link:hover {
+  background: aqua;
+  color: black;
+  box-shadow: 0 0 20px aqua;
+}
+
+.contact-map {
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,255,255,0.4);
+}
+
+
+
 @media (max-width: 1024px) {
   .scallops-pic img {
     width: 25rem;
