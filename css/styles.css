@@ -33,7 +33,7 @@ body{
 
 }
 .background-layer{
-    background-image:url('images/bg.jpg');
+    background-image:url('../images/bg.jpg');
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -116,11 +116,11 @@ gap: 20rem;
   border-color: rgb(80, 9, 4);
   font-weight: 800;
   cursor: pointer;
-  transition: 0.5s ease;
+  transition: 0.5s ease
 }
 
 .logo-pic:hover{
-    transform: scale(1.2);
+    transform: scale(1.2) 
 }
 
 .dis-content{
@@ -362,7 +362,7 @@ section {
 
 .contact-section {
   min-height: 100vh;
-  padding: 90px 10px;
+  padding: 50px 10px;
   text-align: center;
   color: white;
 }

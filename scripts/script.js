@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+
   const navLinks = document.querySelectorAll('.nav-container a');
   const logo = document.querySelector('.logo-pic');
 
