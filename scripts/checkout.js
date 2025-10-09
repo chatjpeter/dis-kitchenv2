@@ -1,5 +1,10 @@
 import { products } from '../data/products.js';
-import { setupQuantityButtons, setupCheckboxListeners, setupCartListeners } from '../data/cart.js';  // Added setupCartListeners to import
+import {
+  setupQuantityButtons,
+  setupCheckboxListeners,
+  updateCartQuantityDisplay,
+  cart
+} from '../data/cart.js';
 
 let checkOutHTML = '';
 
@@ -42,7 +47,9 @@ products.forEach((product, index) => {
           </div>
         </div>
 
-        <button id="${addToCartId}" class="order-btn">Add to Cart</button>
+        <button id="${addToCartId}" class="order-btn js-add-to-cart" data-product-name="${product.name}">
+          Add to Cart
+        </button>
       </div>
     </div>
   `;
@@ -50,16 +57,33 @@ products.forEach((product, index) => {
 
 document.querySelector('.js-product-section').innerHTML = checkOutHTML;
 
-// Setup functions (call after HTML is generated)
-setupCheckboxListeners();  // Handles enable/disable + dispatches for cart
-setupQuantityButtons();    // Handles +/− clicks
-setupCartListeners();      // New: Real-time quantity counter (updates .js-cart-quantity)
+// ✅ Setup buttons and checkboxes
+setupCheckboxListeners();
+setupQuantityButtons();
 
-// Initialize AOS AFTER the content is added
-AOS.init({
-  duration: 1000,
-  once: true,
+// ✅ Listen for manual typing in number inputs
+document.querySelectorAll('.qty-input').forEach((input) => {
+  input.addEventListener('input', updateCartQuantityDisplay);
 });
 
-// Tell AOS to refresh for new elements
+// 🛒 Add to Cart button logic (optional if you still need it)
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productName = button.dataset.productName;
+    console.log(productName);
+
+    let matchingItem = cart.find((item) => item.productName === productName);
+    if (matchingItem) {
+      matchingItem.quantity++;
+    } else {
+      cart.push({ productName: productName, quantity: 1 });
+    }
+
+    updateCartQuantityDisplay(); // ensure cart updates visually too
+    console.log(cart);
+  });
+});
+
+// ✅ Initialize AOS after DOM content
+AOS.init({ duration: 1000, once: true });
 AOS.refresh();
