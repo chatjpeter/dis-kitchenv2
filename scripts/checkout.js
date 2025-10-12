@@ -76,7 +76,8 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     if (matchingItem) {
       matchingItem.quantity++;
     } else {
-      cart.push({ productName: productName, quantity: 1 });
+      cart.push({ productName: productName, 
+                quantity: 1 });
     }
 
     updateCartQuantityDisplay(); // ensure cart updates visually too

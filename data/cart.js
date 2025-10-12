@@ -1,4 +1,3 @@
-// Global cart array (exported for use in other files)
 export const cart = [];
 
 // 🔹 Helper to update cart quantity display (called from other functions)
@@ -78,3 +77,4 @@ export function setupCheckboxListeners() {
     });
   });
 }
+
