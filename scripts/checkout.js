@@ -57,16 +57,16 @@ products.forEach((product, index) => {
 
 document.querySelector('.js-product-section').innerHTML = checkOutHTML;
 
-// ✅ Setup buttons and checkboxes
+
 setupCheckboxListeners();
 setupQuantityButtons();
 
-// ✅ Listen for manual typing in number inputs
+
 document.querySelectorAll('.qty-input').forEach((input) => {
   input.addEventListener('input', updateCartQuantityDisplay);
 });
 
-// ✅ Add to Cart handler (fixed)
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const productContainer = button.closest('.spicy-description');
@@ -83,7 +83,6 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       const variety = checkbox.dataset.name;
       const price = parseFloat(checkbox.dataset.price);
 
-      // ✅ Correctly find matching quantity input
       const quantityInput = productContainer.querySelector(`#${checkbox.id.replace('-', '-qty-')}`);
       const quantity = parseInt(quantityInput?.value) || 1;
 
@@ -103,13 +102,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       }
     });
 
-    // ✅ Save cart and update
     localStorage.setItem('cartData', JSON.stringify(cart));
     updateCartQuantityDisplay();
     console.log(cart);
   });
 });
 
-// ✅ Initialize AOS after DOM content
 AOS.init({ duration: 1000, once: true });
 AOS.refresh();

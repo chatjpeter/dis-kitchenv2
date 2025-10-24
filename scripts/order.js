@@ -62,7 +62,7 @@ if (cart.length === 0) {
 
 document.querySelector(".js-cart-summary").innerHTML = cartSummaryHTML;
 
-// 🗑 Delete button logic
+
 document.querySelectorAll(".delete-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const index = parseInt(e.target.dataset.index);
@@ -72,13 +72,13 @@ document.querySelectorAll(".delete-btn").forEach((btn) => {
   });
 });
 
-// ✅ PAYMENT SUMMARY SECTION
+
 function renderPaymentSummary() {
   const paymentSummary = document.querySelector(".js-payment-summary");
 
   if (!paymentSummary) return;
 
-  // Safely calculate subtotal and count
+
   const subtotal = cart.reduce((sum, item) => {
     const price = parseFloat(item.price) || 0;
     const qty = parseInt(item.quantity) || 0;
@@ -94,7 +94,6 @@ function renderPaymentSummary() {
   const deliveryFee = cart.length > 0 ? 150 : 0;
   const total = subtotal + deliveryFee;
 
-  // Log for debugging (optional)
   console.log({ subtotal, deliveryFee, total });
 
   paymentSummary.innerHTML = `
@@ -131,7 +130,6 @@ paymentSummary
 
 }
 
-// Render payment summary
 renderPaymentSummary();
 
 

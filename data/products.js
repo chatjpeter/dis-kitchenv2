@@ -1,4 +1,4 @@
-// ✅ data/products.js
+
 export const products = [
   {
     name: "Spicy Flavor Scallops",

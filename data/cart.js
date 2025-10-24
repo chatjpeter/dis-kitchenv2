@@ -1,27 +1,21 @@
-//Load existing cart or start empty
 export let cart = JSON.parse(localStorage.getItem('cartData')) || [];
 
-// Save cart to localStorage
 export function saveCart() {
   localStorage.setItem('cartData', JSON.stringify(cart));
 }
 
-// Compute total quantity in all cart items
 export function getTotalQuantity() {
   return cart.reduce((total, item) => total + (item.quantity || 0), 0);
 }
 
-// Update cart quantity badge
 export function updateCartQuantityDisplay() {
   const display = document.querySelector('.js-cart-quantity');
   if (display) {
-    // Default to 0 if no items
     const quantity = getTotalQuantity() || 0;
     display.textContent = quantity;
   }
 }
 
-// Setup +/− button logic
 export function setupQuantityButtons() {
   document.querySelectorAll('.js-button-minus').forEach((button) => {
     button.addEventListener('click', () => {
@@ -30,7 +24,7 @@ export function setupQuantityButtons() {
         const min = parseInt(input.min, 10) || 0;
         input.value = Math.max(min, parseInt(input.value, 10) - 1 || 0);
         input.dispatchEvent(new Event('input', { bubbles: true }));
-        updateCartQuantityDisplay(); 
+        updateCartQuantityDisplay();
       }
     });
   });
@@ -42,12 +36,11 @@ export function setupQuantityButtons() {
         const max = parseInt(input.max, 10) || Infinity;
         input.value = Math.min(max, parseInt(input.value, 10) + 1 || 1);
         input.dispatchEvent(new Event('input', { bubbles: true }));
-        updateCartQuantityDisplay(); 
+        updateCartQuantityDisplay();
       }
     });
   });
 }
-
 
 export function setupCheckboxListeners() {
   document.querySelectorAll('.order-options .option input[type="checkbox"]').forEach((checkbox) => {
@@ -67,12 +60,11 @@ export function setupCheckboxListeners() {
         }
       }
 
-      updateCartQuantityDisplay(); 
+      updateCartQuantityDisplay();
     });
   });
 }
 
-// 🔹 Show saved quantity on page load
 document.addEventListener('DOMContentLoaded', () => {
   updateCartQuantityDisplay();
 });
