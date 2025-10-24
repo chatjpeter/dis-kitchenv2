@@ -66,21 +66,46 @@ document.querySelectorAll('.qty-input').forEach((input) => {
   input.addEventListener('input', updateCartQuantityDisplay);
 });
 
-// 🛒 Add to Cart button logic (optional if you still need it)
+// ✅ Add to Cart handler (fixed)
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
+    const productContainer = button.closest('.spicy-description');
     const productName = button.dataset.productName;
-    console.log(productName);
 
-    let matchingItem = cart.find((item) => item.productName === productName);
-    if (matchingItem) {
-      matchingItem.quantity++;
-    } else {
-      cart.push({ productName: productName, 
-                quantity: 1 });
+    const selectedOptions = productContainer.querySelectorAll('input[type="checkbox"]:checked');
+
+    if (selectedOptions.length === 0) {
+      alert('Please select at least one size before adding to cart.');
+      return;
     }
 
-    updateCartQuantityDisplay(); // ensure cart updates visually too
+    selectedOptions.forEach((checkbox) => {
+      const variety = checkbox.dataset.name;
+      const price = parseFloat(checkbox.dataset.price);
+
+      // ✅ Correctly find matching quantity input
+      const quantityInput = productContainer.querySelector(`#${checkbox.id.replace('-', '-qty-')}`);
+      const quantity = parseInt(quantityInput?.value) || 1;
+
+      let existing = cart.find(item =>
+        item.productName === productName && item.variety === variety
+      );
+
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        cart.push({
+          productName,
+          variety,
+          quantity,
+          price
+        });
+      }
+    });
+
+    // ✅ Save cart and update
+    localStorage.setItem('cartData', JSON.stringify(cart));
+    updateCartQuantityDisplay();
     console.log(cart);
   });
 });

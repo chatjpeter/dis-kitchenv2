@@ -195,16 +195,16 @@ header {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    color: white;  /* White for visibility on tinted bg */
+    color: white;  
     gap: 8px;
-    position: absolute;  /* Pulls it out of flex flow */
-    top: 5rem;           /* Matches header padding; aligns with logo height */
-    right: 8rem;         /* Far right, padded from edge */
-    padding: 1.5rem;        /* Larger click area */
-    z-index: 10;         /* Above tint/background */
+    position: fixed;  
+    top: 5rem;           
+    right: 8rem;        
+    padding: 1.5rem;       
+    z-index: 10;        
     background-color:  rgba(0,0,0,0.4);
     border-radius: 20px;
-  
+
     
     
 }
@@ -309,5 +309,4 @@ header {
         font-size: 3rem;
     }
 }
-
 

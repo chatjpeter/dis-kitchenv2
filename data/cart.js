@@ -1,80 +1,78 @@
-export const cart = [];
+//Load existing cart or start empty
+export let cart = JSON.parse(localStorage.getItem('cartData')) || [];
 
-// 🔹 Helper to update cart quantity display (called from other functions)
-export function updateCartQuantityDisplay() {
-  let totalQuantity = 0;
-
-  // Add up quantities for all checked options
-  document.querySelectorAll('.qty-input').forEach((input) => {
-    const checkbox = input.closest('.option').querySelector('input[type="checkbox"]');
-    if (checkbox && checkbox.checked) {
-      totalQuantity += parseInt(input.value, 10) || 0;
-    }
-  });
-
-  const display = document.querySelector('.js-cart-quantity');
-  if (display) display.textContent = totalQuantity;
+// Save cart to localStorage
+export function saveCart() {
+  localStorage.setItem('cartData', JSON.stringify(cart));
 }
 
-// 🔹 Sets up +/− button logic
+// Compute total quantity in all cart items
+export function getTotalQuantity() {
+  return cart.reduce((total, item) => total + (item.quantity || 0), 0);
+}
+
+// Update cart quantity badge
+export function updateCartQuantityDisplay() {
+  const display = document.querySelector('.js-cart-quantity');
+  if (display) {
+    // Default to 0 if no items
+    const quantity = getTotalQuantity() || 0;
+    display.textContent = quantity;
+  }
+}
+
+// Setup +/− button logic
 export function setupQuantityButtons() {
-  // Minus buttons (−)
   document.querySelectorAll('.js-button-minus').forEach((button) => {
     button.addEventListener('click', () => {
       const input = button.nextElementSibling;
-      if (input && input.tagName === 'INPUT' && input.type === 'number') {
-        let currentValue = parseInt(input.value, 10) || 0;
-        const minValue = parseInt(input.min, 10) || 0;
-        const newValue = Math.max(minValue, currentValue - 1);
-        input.value = newValue;
-
+      if (input && input.type === 'number') {
+        const min = parseInt(input.min, 10) || 0;
+        input.value = Math.max(min, parseInt(input.value, 10) - 1 || 0);
         input.dispatchEvent(new Event('input', { bubbles: true }));
-        updateCartQuantityDisplay(); // 👈 update total when minus clicked
+        updateCartQuantityDisplay(); 
       }
     });
   });
 
-  // Plus buttons (+)
   document.querySelectorAll('.js-button-plus').forEach((button) => {
     button.addEventListener('click', () => {
       const input = button.previousElementSibling;
-      if (input && input.tagName === 'INPUT' && input.type === 'number') {
-        let currentValue = parseInt(input.value, 10) || 0;
-        const maxValue = parseInt(input.max, 10) || Infinity;
-        const newValue = Math.min(maxValue, currentValue + 1);
-        input.value = newValue;
-
+      if (input && input.type === 'number') {
+        const max = parseInt(input.max, 10) || Infinity;
+        input.value = Math.min(max, parseInt(input.value, 10) + 1 || 1);
         input.dispatchEvent(new Event('input', { bubbles: true }));
-        updateCartQuantityDisplay(); // 👈 update total when plus clicked
+        updateCartQuantityDisplay(); 
       }
     });
   });
 }
 
-// 🔹 Sets up checkbox listeners to enable/disable controls
+
 export function setupCheckboxListeners() {
   document.querySelectorAll('.order-options .option input[type="checkbox"]').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       const optionDiv = checkbox.closest('.option');
       const quantityControl = optionDiv.querySelector('.quantity-control');
-      const input = quantityControl ? quantityControl.querySelector('.qty-input') : null;
+      const input = quantityControl?.querySelector('.qty-input');
 
       if (quantityControl) {
         const controls = quantityControl.querySelectorAll('button, input');
-
         if (checkbox.checked) {
-          // Enable and set to 1
           controls.forEach((el) => (el.disabled = false));
           if (input) input.value = 1;
         } else {
-          // Disable and reset to 0
           if (input) input.value = 0;
           controls.forEach((el) => (el.disabled = true));
         }
-
-        updateCartQuantityDisplay(); // 👈 update whenever checkbox changes
       }
+
+      updateCartQuantityDisplay(); 
     });
   });
 }
 
+// 🔹 Show saved quantity on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartQuantityDisplay();
+});

@@ -24,49 +24,29 @@
         <div><h1 class="review-order">Review your order</h1></div>
         <section class="checkout-grid">
             <div class="js-cart-summary cart-summary">
-                <div class="js-cart item cart-item-container">
-                    <div class="delivery-date-selector">
-                        <label for="delivery-date">Delivery date:</label>
-                        <input type="date" id="delivery-date" name="delivery-date" value="2024-09-02" min="2024-09-02">
-                    </div>
-                    <div class="cart-item-details-grid">
-                        <img class="product-image" src="./images/spicy1.jpg" alt="Spicy Scallops">
-                        <div class="cart-item-details">
-                            <div class="product-name">Spicy Scallops</div>
-                            <div class="product-price">₱620</div>
-                            <div class="js-quantity-container product-quantity" data-testid="js-quantity-container">
-                                <label>Quantity:</label>
-                                <span class="js-quantity-label quantity-label" data-testid="quantity-label">2</span>
-                                <input class="js-new-quantity-input new-quantity-input" type="number" value="2" min="1" data-testid="new-quantity-input">
-                                <span class="js-update-quantity-link update-quantity-link link-primary" data-testid="update-quantity-link">Update</span>
-                                <span class="js-save-quantity-link save-quantity-link link-primary" data-testid="save-quantity-link">Save</span>
-                                <span class="js-delete-quantity-link delete-quantity-link link-primary" data-testid="delete-quantity-link">Delete</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="js-payment-summary payment-summary">
                 <h2>Payment Summary</h2>
                 <div class="payment-item">
                     <span>Subtotal (1 item)</span>
-                    <span>₱1,240</span>
+                    <span>₱0</span>
                 </div>
-                <div class="payment-item">
-                    <span>Tax (12%)</span>
-                    <span>₱149</span>
-                </div>
+            
                 <div class="payment-item">
                     <span>Delivery Fee</span>
-                    <span>₱50</span>
+                    <span>₱150</span>
                 </div>
                 <div class="payment-total">
                     <span>Total</span>
-                    <span>₱1,439</span>
+                    <span>₱0</span>
                 </div>
                 <button class="place-order-btn">Place Order</button>
             </div>
         </section>
     </main>
+
+    
+    <script type="module" src="./scripts/order.js"></script>
 </body>
 </html>
