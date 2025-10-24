@@ -22,7 +22,7 @@ products.forEach((product, index) => {
 
     <div class="spicy-description" data-aos="zoom-in" data-aos-delay="1000">
       <h1 class="spicy-title">${product.name}</h1>
-      <img src="../images/ratings/rating-50.png" alt="Rating" class="rating">
+      <img src="images/ratings/rating-50.png" alt="Rating" class="rating">
       <h2>₱320 – Barkada Size (35pcs)</h2>
       <h2>₱600 – Family Size (90pcs)</h2>
 

@@ -2,7 +2,7 @@
 export const products = [
   {
     name: "Spicy Flavor Scallops",
-    image: "../images/spicy1.jpg",
+    image: "images/spicy1.jpg",
     varieties: [
       { name: "Barkada Size", price: 320, pieces: 35 },
       { name: "Family Size", price: 600, pieces: 90 }
@@ -11,7 +11,7 @@ export const products = [
   },
   {
     name: "Plain Flavor Scallops",
-    image: "../images/plain1.jpg",
+    image: "images/plain1.jpg",
     varieties: [
       { name: "Barkada Size", price: 320, pieces: 35 },
       { name: "Family Size", price: 600, pieces: 90 }
@@ -20,7 +20,7 @@ export const products = [
   },
   {
     name: "Mixed Flavor Scallops",
-    image: "../images/mix1.jpg",
+    image: "images/mix1.jpg",
     varieties: [
       { name: "Barkada Size", price: 320, pieces: 35 },
       { name: "Family Size", price: 600, pieces: 90 }
